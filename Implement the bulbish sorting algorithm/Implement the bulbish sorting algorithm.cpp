@@ -1,55 +1,27 @@
-﻿#include <iostream>
-#include <cstdlib>  
-
+#include <iostream>
+#include <algorithm>
+#include <ctime>
+#include <vector>
 using namespace std;
 
-
-// Тут проблема в тому що чомусь не считує кирилицю але код робочий
-void bubbleSort(int arr[], int n) {
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                swap(arr[j], arr[j + 1]);
-            }
-        }
-    }
-}
-
-void printArray(int arr[], int n) {
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-}
-
 int main() {
-    srand(time(nullptr)); 
+    int x;
+    cout << "введіть кількість чисел: ";
+    cin >> x;
 
-    int n;
-    cout << "Введіть розмір масиву: "; 
-    cin >> n;
+   vector<int> masiv(x);
+    srand(time(0));
 
-    if (n <= 0) {
-        cout << "Розмір масиву має бути більше нуля!" << endl;
-        return 1;
+    cout << "масив: ";
+    for (int i = 0; i < x; i++) {
+        masiv[i] = rand() % 100 + 1; 
+        cout << masiv[i] << " ";
     }
-
-    int* arr = new int[n]; 
-
-    for (int i = 0; i < n; i++) {
-        arr[i] = rand() % 100 + 1;
+    sort(masiv.begin(), masiv.end());
+    cout << endl;
+    cout << "sort: ";
+    for (int i = 0; i < x; i++){
+    cout << masiv[i] << " ";
     }
-
-    cout << "Згенерований масив: ";
-    printArray(arr, n);
-
-    
-    bubbleSort(arr, n);
-
-    cout << "Відсортований масив: ";
-    printArray(arr, n);
-
-    delete[] arr;
-
     return 0;
 }
